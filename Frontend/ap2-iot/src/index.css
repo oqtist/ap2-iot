@@ -1,0 +1,49 @@
+:root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-weight: 100;
+  font-size: 30pt;
+}
+
+#form-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+input, label {
+  display: block;
+}
+
+#botao-submit {
+  margin-top: 2rem;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  background-color: #b1b1b1;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+form {
+  background-color: #3d556338;
+  backdrop-filter: blur(5px);
+  padding: 3.5rem;
+  border-radius: 1rem;
+}
+
+body {
+  background: radial-gradient(#181818, #242424, #303030 90%);
+}
