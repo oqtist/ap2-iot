@@ -1,24 +1,22 @@
 import { database } from "../database.js";
 import { DataTypes } from "sequelize";
+import { Usuarios } from "./usuario.js";
 
 database.define()
 
-const Usuarios = database.define('Usuarios', {
+const Relatorios = database.define('Relatorios', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    nome: {
-        type: DataTypes.STRING(100)
-    },
-    email: {
+    prompt: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false
     },
-    senha: {
-        type: DataTypes.STRING(255)
+    id_usuario: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 },
     {
@@ -28,4 +26,11 @@ const Usuarios = database.define('Usuarios', {
     }
 )
 
-export { Usuarios }
+Usuarios.hasMany(Relatorios, {
+    foreignKey: {
+        allowNull: false,
+        name: "id_usuario"
+    }
+})
+
+export { Relatorios }

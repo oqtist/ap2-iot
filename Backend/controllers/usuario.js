@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import { Usuarios } from '../models/usuario.js'
 const segredoJwt = process.env.SEGREDO_JWT
 
-const cadastrarUsuario = async (req, res) => {
+const registrar = async (req, res) => {
     try {
         const { nome, email, senha, perfil } = req.body
 
@@ -50,4 +50,4 @@ const login = async (req, res) => {
     }
 }
 
-export { cadastrarUsuario, login }
+export { registrar, login }
