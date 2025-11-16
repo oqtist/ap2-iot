@@ -50,4 +50,19 @@ const login = async (req, res) => {
     }
 }
 
-export { registrar, login }
+const apagar = async (req, res) => {
+    try {
+        const { id } = req.params
+        const userCheck = await Usuarios.findByPk(id)
+
+        if (userCheck) {
+            userCheck.destroy()
+        } else {
+            res.status(500).send({ mensagem: 'O usuário especificado não existe.' })
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export { registrar, login, apagar }
