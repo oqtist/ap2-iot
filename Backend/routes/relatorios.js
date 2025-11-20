@@ -1,7 +1,8 @@
 import express from 'express'
 const routerRelatorio = express.Router()
-import { teste } from '../controllers/relatorio.js'
+import { criarRelatorio } from '../controllers/relatorio.js'
+import { verificarToken } from '../middleware/auth.js'
 
-routerRelatorio.get('/teste', teste)
+routerRelatorio.post('/relatorio/criar', verificarToken, criarRelatorio)
 
 export { routerRelatorio }
