@@ -10,7 +10,7 @@ const verificarToken = (req, res, next) => {
         } else {
             const validacao = jwt.verify(token, segredoJwt)
             console.log(validacao)
-            const userCheck = Usuarios.findByPk(validacao.id)
+            const userCheck = Usuarios.findByPk(validacao.idUsuario)
 
             if (userCheck) {
                 res.locals.user = userCheck

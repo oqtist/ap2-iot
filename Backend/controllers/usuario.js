@@ -4,20 +4,13 @@ const segredoJwt = process.env.SEGREDO_JWT
 
 const registrar = async (req, res) => {
     try {
-        const { nome, email, senha, perfil } = req.body
+        const { nome, email, senha } = req.body
 
         const userCheck = await Usuarios.findOne({ where: { email } })
 
-        if (!nome || !senha || !email || !perfil) {
+        if (!nome || !senha || !email) {
             res.status(500).send({ mensagem: 'Um dos campos não foi preenchido. Tente Novamente.' })
             return
-        }
-
-        if (perfil != 'usuario') {
-            if (perfil != 'tecnico') {
-                res.status(500).send({ mensagem: 'Valor inválido. Perfil deve ser "usuario" ou "tecnico"' })
-                return
-            }
         }
 
         if (userCheck) {
@@ -25,7 +18,7 @@ const registrar = async (req, res) => {
             return
         }
 
-        const Usuario = await Usuarios.create({ nome, senha, email, perfil })
+        const Usuario = await Usuarios.create({ nome, senha, email })
         res.status(200).send({ mensagem: "Usuário Criado!" })
 
     } catch (err) { console.log(err) }
@@ -42,7 +35,7 @@ const login = async (req, res) => {
             return
         }
 
-        const token = jwt.sign({ idUsuario: emailCheck.dataValues.id, perfil: emailCheck.dataValues.perfil }, segredoJwt, { expiresIn: "1d" })
+        const token = jwt.sign({ idUsuario: emailCheck.dataValues.id }, segredoJwt, { expiresIn: "1d" })
         res.status(201).send({ token: token, mensagem: "Login efetuado!" })
 
     } catch (err) {
